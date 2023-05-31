@@ -10,6 +10,6 @@ data class PhotosResponse(
     val pages: Int,
     val perpage: Int,
     val total: Int,
-    val photo: List<Photo>,
+    val photo: MutableList<Photo>,
     val stat: String
 )

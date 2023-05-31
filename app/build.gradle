@@ -2,6 +2,8 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'com.google.devtools.ksp'
+    id 'org.jetbrains.kotlin.kapt'
+
 }
 
 ext{
@@ -12,11 +14,13 @@ ext{
 android {
     namespace 'com.shaza.photoschallange'
     compileSdk 33
+
     buildFeatures{
         dataBinding true
         viewBinding true
-        buildConfig=true
+        buildConfig true
     }
+
     defaultConfig {
         applicationId "com.shaza.photoschallange"
         minSdk 26
@@ -52,10 +56,14 @@ android {
 }
 
 dependencies {
+    implementation 'androidx.core:core-ktx:1.10.1'
+    implementation 'com.google.android.gms:play-services-ads-lite:22.1.0'
+    def paging_version = "3.1.1"
+    def glide_version = "4.15.1"
+    def coroutines_android_version = "1.7.1"
 
-    implementation 'androidx.core:core-ktx:1.8.0'
     implementation 'androidx.appcompat:appcompat:1.6.1'
-    implementation 'com.google.android.material:material:1.5.0'
+    implementation 'com.google.android.material:material:1.9.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.6.1'
@@ -71,9 +79,20 @@ dependencies {
     ksp "io.insert-koin:koin-ksp-compiler:$koin_ksp_version"
 
 //    Retrofit
-//Retrofit
     implementation "com.squareup.retrofit2:retrofit:$RetrofitVersion"
     implementation "com.squareup.retrofit2:converter-gson:$RetrofitVersion"
     implementation "com.squareup.okhttp3:logging-interceptor:4.10.0"
+
+    //Glide
+    implementation "com.github.bumptech.glide:glide:$glide_version"
+    annotationProcessor "com.github.bumptech.glide:compiler:$glide_version"
+
+    //Coroutines
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_android_version"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_android_version"
+
+//    Pagination 3
+    implementation "androidx.paging:paging-runtime-ktx:$paging_version"
+
 
 }
