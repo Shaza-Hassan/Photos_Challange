@@ -5,15 +5,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
 import com.google.android.material.snackbar.Snackbar
+import com.shaza.photoschallange.R
 import com.shaza.photoschallange.databinding.FragmentPhotosBinding
+import com.shaza.photoschallange.photofullscreen.PhotoFullScreenFragment
+import com.shaza.photoschallange.photolist.model.Photo
+import com.shaza.photoschallange.photolist.ui.adapter.ImageClickListener
 import com.shaza.photoschallange.photolist.ui.adapter.PhotoAdapter
 import com.shaza.photoschallange.shared.model.ErrorModel
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.androidx.viewmodel.ext.android.activityViewModel
 
 class PhotosFragment : Fragment() {
 
@@ -21,26 +27,23 @@ class PhotosFragment : Fragment() {
         fun newInstance() = PhotosFragment()
     }
 
-    private val viewModel: PhotosViewModel by viewModel()
+    private val viewModel: PhotosViewModel by activityViewModel()
 
     private lateinit var binding: FragmentPhotosBinding
 
     private lateinit var adapter: PhotoAdapter
-
-    private var loading: Boolean? = true
-    private var error: Boolean? = false
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentPhotosBinding.inflate(inflater, container, false)
+
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        adapter = PhotoAdapter()
+        adapter = PhotoAdapter(imageClickListener)
         binding.photosList.adapter = adapter
         listenToPaginationState()
         observeOnData()
@@ -80,6 +83,14 @@ class PhotosFragment : Fragment() {
                     }
                 }
             }
+        }
+    }
+
+    private val imageClickListener = object : ImageClickListener{
+        override fun onImageClicked(photo: Photo) {
+            viewModel.selectItem(photo)
+            val fragmentManager: FragmentManager = requireActivity().supportFragmentManager
+            fragmentManager.beginTransaction().add(R.id.main_layout, PhotoFullScreenFragment()).addToBackStack("").commit()
         }
     }
 

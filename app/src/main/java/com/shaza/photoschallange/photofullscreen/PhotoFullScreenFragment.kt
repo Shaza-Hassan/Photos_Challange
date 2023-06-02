@@ -5,24 +5,41 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.shaza.photoschallange.R
-import org.koin.androidx.viewmodel.ext.android.viewModel
+import com.shaza.photoschallange.databinding.FragmentPhotoFullScreenBinding
+import com.shaza.photoschallange.photolist.ui.PhotosViewModel
+import org.koin.androidx.viewmodel.ext.android.activityViewModel
 
 class PhotoFullScreenFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = PhotoFullScreenFragment()
-    }
+    private val viewModel: PhotosViewModel by activityViewModel()
 
-    private val viewModel: PhotoFullScreenViewModel by viewModel()
-
+    lateinit var binding: FragmentPhotoFullScreenBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-        return inflater.inflate(R.layout.fragment_photo_full_screen, container, false)
+        binding = FragmentPhotoFullScreenBinding.inflate(inflater,container,false)
+        observeOnData()
+        binding.toolbar.setNavigationOnClickListener {
+            requireActivity().supportFragmentManager.popBackStack()
+        }
+        return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+    }
+    private fun observeOnData() {
+        viewModel.selectedItem.observe(viewLifecycleOwner) {
+            binding.photo = it
+            binding.toolbar.title = it?.title
+        }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        viewModel.selectItem(null)
+    }
 
 }

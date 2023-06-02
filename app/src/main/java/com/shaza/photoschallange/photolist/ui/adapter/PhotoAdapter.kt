@@ -13,7 +13,7 @@ import com.shaza.photoschallange.photolist.model.Photo
 /**
  * Created by Shaza Hassan on 31/May/2023.
  */
-class PhotoAdapter : PagingDataAdapter<Photo, PhotoUserHolder>(Comparator) {
+class PhotoAdapter (private val imageClickListener: ImageClickListener): PagingDataAdapter<Photo, PhotoUserHolder>(Comparator) {
     object Comparator : DiffUtil.ItemCallback<Photo>() {
         override fun areItemsTheSame(oldItem: Photo, newItem: Photo): Boolean {
             return oldItem.id == newItem.id
@@ -31,6 +31,9 @@ class PhotoAdapter : PagingDataAdapter<Photo, PhotoUserHolder>(Comparator) {
         val item = getItem(position)
         val isAd = (position != 0 && (position + 1) % 5 == 0)
         item?.let { holder.bindView(it, isAd) }
+        holder.binding.photoImage.setOnClickListener {
+            item?.let { photo -> imageClickListener.onImageClicked(photo) }
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PhotoUserHolder {
@@ -45,7 +48,7 @@ class PhotoAdapter : PagingDataAdapter<Photo, PhotoUserHolder>(Comparator) {
     }
 }
 
-class PhotoUserHolder(private val binding: PhotoListItemBinding) :
+class PhotoUserHolder(val binding: PhotoListItemBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
     fun bindView(photo: Photo, isAd: Boolean) {
@@ -56,4 +59,8 @@ class PhotoUserHolder(private val binding: PhotoListItemBinding) :
         binding.executePendingBindings()
 
     }
+}
+
+interface ImageClickListener{
+    fun onImageClicked(photo: Photo)
 }

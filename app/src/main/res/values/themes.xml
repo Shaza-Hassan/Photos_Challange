@@ -1,8 +1,6 @@
 <resources>
     <!-- Base application theme. -->
     <style name="Base.Theme.PhotosChallange" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
 
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/primary_p500</item>
