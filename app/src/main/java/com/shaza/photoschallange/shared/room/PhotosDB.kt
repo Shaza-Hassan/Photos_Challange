@@ -1,4 +1,4 @@
-package com.shaza.photoschallange.room
+package com.shaza.photoschallange.shared.room
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
@@ -10,8 +10,7 @@ import com.shaza.photoschallange.photolist.model.Photo
 
 @Database(
     entities = [Photo::class, RemoteKeys::class],
-    version = 1,
-    exportSchema = true
+    version = 2,
 )
 
 

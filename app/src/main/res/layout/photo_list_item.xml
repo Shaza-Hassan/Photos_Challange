@@ -14,43 +14,44 @@
         android:layout_height="wrap_content">
 
         <androidx.cardview.widget.CardView
-            app:layout_constraintTop_toTopOf="parent"
             android:id="@+id/photo_card_view"
             android:layout_width="match_parent"
             android:layout_height="200dp"
             app:cardCornerRadius="20dp"
-            app:cardElevation="8dp"
-            app:cardUseCompatPadding="true">
+            android:layout_margin="8dp"
+            app:cardUseCompatPadding="true"
+            app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
                 android:id="@+id/photo_image"
+                imageUrl="@{photo.photoUrl}"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:adjustViewBounds="true"
-                android:scaleType="centerCrop"
-                imageUrl="@{photo.photoUrl}"/>
+                android:scaleType="centerCrop" />
         </androidx.cardview.widget.CardView>
 
-<!--        <com.google.android.gms.ads.AdView-->
-<!--            xmlns:ads="http://schemas.android.com/apk/res-auto"-->
-<!--            android:id="@+id/adView"-->
-<!--            ads:layout_constraintTop_toTopOf="parent"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_centerHorizontal="true"-->
-<!--            android:layout_alignParentBottom="true"-->
-<!--            ads:adSize="BANNER"-->
-<!--            ads:adUnitId="ca-app-pub-3940256099942544/6300978111">-->
-<!--        </com.google.android.gms.ads.AdView>-->
+        <!--        <com.google.android.gms.ads.AdView-->
+        <!--            xmlns:ads="http://schemas.android.com/apk/res-auto"-->
+        <!--            android:id="@+id/adView"-->
+        <!--            ads:layout_constraintTop_toTopOf="parent"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_centerHorizontal="true"-->
+        <!--            android:layout_alignParentBottom="true"-->
+        <!--            ads:adSize="BANNER"-->
+        <!--            ads:adUnitId="ca-app-pub-3940256099942544/6300978111">-->
+        <!--        </com.google.android.gms.ads.AdView>-->
 
         <ImageView
+            android:id="@+id/ad_view_image"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/photo_card_view"
-            android:src="@drawable/banner_ads"
+            android:layout_marginTop="8dp"
             android:adjustViewBounds="true"
-            android:id="@+id/ad_view_image"
-            android:isVisible="@{photo.ad}"/>
+            android:isVisible="@{photo.ad}"
+            android:src="@drawable/banner_ads"
+            app:layout_constraintTop_toBottomOf="@id/photo_card_view" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

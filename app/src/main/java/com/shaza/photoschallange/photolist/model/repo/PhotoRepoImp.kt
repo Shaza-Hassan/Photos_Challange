@@ -4,10 +4,10 @@ import androidx.paging.ExperimentalPagingApi
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
+import com.shaza.photoschallange.shared.network.RetrofitClient
 import com.shaza.photoschallange.photolist.model.Photo
 import com.shaza.photoschallange.photolist.model.PhotoRemoteMediator
-import com.shaza.photoschallange.network.RetrofitClient
-import com.shaza.photoschallange.room.PhotosDB
+import com.shaza.photoschallange.shared.room.PhotosDB
 import kotlinx.coroutines.flow.Flow
 import org.koin.core.annotation.Factory
 
@@ -25,7 +25,7 @@ class PhotoRepoImp(private val retrofitClient: RetrofitClient, private val photo
                 pageSize = 12,
             ),
             pagingSourceFactory = { photosDB.getPhotoDao().getPhotos() },
-            remoteMediator = PhotoRemoteMediator(retrofitClient,photosDB)
+            remoteMediator = PhotoRemoteMediator(retrofitClient, photosDB)
         ).flow
     }
 }

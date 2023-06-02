@@ -3,7 +3,6 @@ package com.shaza.photoschallange.photolist.model
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.google.gson.annotations.SerializedName
 
 /**
  * Created by Shaza Hassan on 30/May/2023.

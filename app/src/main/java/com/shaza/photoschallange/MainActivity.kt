@@ -1,7 +1,7 @@
 package com.shaza.photoschallange
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.add
 import androidx.fragment.app.commit
 import com.shaza.photoschallange.databinding.ActivityMainBinding

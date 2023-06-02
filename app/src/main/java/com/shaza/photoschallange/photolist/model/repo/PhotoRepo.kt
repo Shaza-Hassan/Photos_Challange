@@ -1,6 +1,5 @@
 package com.shaza.photoschallange.photolist.model.repo
 
-import androidx.lifecycle.LiveData
 import androidx.paging.PagingData
 import com.shaza.photoschallange.photolist.model.Photo
 import kotlinx.coroutines.flow.Flow
@@ -10,5 +9,5 @@ import kotlinx.coroutines.flow.Flow
  */
 interface PhotoRepo {
 
-    fun getPhotos() : Flow<PagingData<Photo>>
+    fun getPhotos(): Flow<PagingData<Photo>>
 }

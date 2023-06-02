@@ -1,4 +1,4 @@
-package com.shaza.photoschallange.room
+package com.shaza.photoschallange.shared.room
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

@@ -6,12 +6,10 @@ import androidx.paging.PagingState
 import androidx.paging.RemoteMediator
 import androidx.room.withTransaction
 import com.bumptech.glide.load.HttpException
-import com.shaza.photoschallange.network.RetrofitClient
-import com.shaza.photoschallange.room.PhotosDB
-import com.shaza.photoschallange.room.RemoteKeys
+import com.shaza.photoschallange.shared.network.RetrofitClient
+import com.shaza.photoschallange.shared.room.PhotosDB
+import com.shaza.photoschallange.shared.room.RemoteKeys
 import java.io.IOException
-import java.lang.Exception
-import java.util.UUID
 import java.util.concurrent.TimeUnit
 
 /**
@@ -21,12 +19,14 @@ import java.util.concurrent.TimeUnit
 class PhotoRemoteMediator(
     private val retrofitClient: RetrofitClient,
     private val photosDB: PhotosDB
-) : RemoteMediator<Int, Photo>(){
+) : RemoteMediator<Int, Photo>() {
 
     override suspend fun initialize(): InitializeAction {
         val cacheTimeout = TimeUnit.MILLISECONDS.convert(1, TimeUnit.HOURS)
 
-        return if (System.currentTimeMillis() - (photosDB.getRemoteKeysDao().getCreationTime() ?: 0) < cacheTimeout) {
+        return if (System.currentTimeMillis() - (photosDB.getRemoteKeysDao().getCreationTime()
+                ?: 0) < cacheTimeout
+        ) {
             InitializeAction.SKIP_INITIAL_REFRESH
         } else {
             InitializeAction.LAUNCH_INITIAL_REFRESH
@@ -39,18 +39,21 @@ class PhotoRemoteMediator(
             LoadType.REFRESH -> {
                 null
             }
+
             LoadType.PREPEND -> {
                 return MediatorResult.Success(endOfPaginationReached = true)
             }
+
             LoadType.APPEND -> {
                 val remoteKeys = getRemoteKeyForLastItem(state)
                 val nextKey = remoteKeys?.nextKey
-                nextKey ?: return MediatorResult.Success(endOfPaginationReached = remoteKeys != null)
+                nextKey
+                    ?: return MediatorResult.Success(endOfPaginationReached = remoteKeys != null)
             }
         } ?: 1
 
         try {
-            val response = retrofitClient.webService.getImages(page,20).body()
+            val response = retrofitClient.webService.getImages(page, 20).body()
             val photos = response?.photos?.photo
             val endOfPaginationReached = (photos?.size ?: 0) < 20
 
@@ -76,7 +79,7 @@ class PhotoRemoteMediator(
             return MediatorResult.Error(error)
         } catch (error: HttpException) {
             return MediatorResult.Error(error)
-        } catch (error: Exception){
+        } catch (error: Exception) {
             return MediatorResult.Error(error)
         }
     }

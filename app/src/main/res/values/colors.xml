@@ -2,4 +2,51 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <!-- Neutral -->
+    <color name="neutral_n1000_black">#000000</color>
+    <color name="neutral_n900">#222222</color>
+    <color name="neutral_n800">#444444</color>
+    <color name="neutral_n700">#666666</color>
+    <color name="neutral_n600">#999999</color>
+    <color name="neutral_n500">#BBBBBB</color>
+    <color name="neutral_n400">#DDDDDD</color>
+    <color name="neutral_n300">#EEEEEE</color>
+    <color name="neutral_n200">#F5F5F5</color>
+    <color name="neutral_n100">#FAFAFA</color>
+    <color name="neutral_n0_white">#FFFFFF</color>
+
+    <!-- Primary -->
+    <color name="primary_p900">#07123D</color>
+    <color name="primary_p800">#141E46</color>
+    <color name="primary_p700">#232F62</color>
+    <color name="primary_p600">#3D4E95</color>
+    <color name="primary_p500">#7788D2</color>
+    <color name="primary_p400">#B6C2F8</color>
+    <color name="primary_p300">#DFE5FF</color>
+    <color name="primary_p200">#EDF0FF</color>
+    <color name="primary_p100">#F5F7FF</color>
+
+    <!-- Secondary -->
+    <color name="secondary_s900">#664100</color>
+    <color name="secondary_s800">#C3800A</color>
+    <color name="secondary_s700">#EAA11F</color>
+    <color name="secondary_s600">#FFBA40</color>
+    <color name="secondary_s500">#FFC96A</color>
+    <color name="secondary_s400">#FFDA99</color>
+    <color name="secondary_s300">#FFEBC8</color>
+    <color name="secondary_s200">#FFF5E4</color>
+    <color name="secondary_s100">#FFFBF3</color>
+
+    <!-- Tertiary -->
+    <color name="tertiary_s900">#362E29</color>
+    <color name="tertiary_s800">#63544B</color>
+    <color name="tertiary_s700">#8A786C</color>
+    <color name="tertiary_s600">#B5A396</color>
+    <color name="tertiary_s500">#CBB8AB</color>
+    <color name="tertiary_s400">#DAD0C8</color>
+    <color name="tertiary_s300">#EAE7E5</color>
+    <color name="tertiary_s200">#F0EEEC</color>
+    <color name="tertiary_s100">#F5F4F4</color>
+
 </resources>

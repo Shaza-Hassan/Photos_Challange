@@ -6,7 +6,7 @@ plugins {
 
 }
 
-ext{
+ext {
     koin_version = "3.4.0"
     koin_ksp_version = "1.2.0"
     RetrofitVersion = '2.9.0'
@@ -15,7 +15,7 @@ android {
     namespace 'com.shaza.photoschallange'
     compileSdk 33
 
-    buildFeatures{
+    buildFeatures {
         dataBinding true
         viewBinding true
         buildConfig true

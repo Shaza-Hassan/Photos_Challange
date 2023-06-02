@@ -1,34 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="loading"
             type="Boolean" />
 
         <variable
             name="error"
-            type="Boolean" />
+            type="com.shaza.photoschallange.shared.model.ErrorModel" />
     </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:clickable="true"
         android:focusable="true"
-        android:background="@color/white"
         tools:context=".photolist.ui.PhotosFragment">
-        
+
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/white"
+            android:background="@color/primary_p700"
+            app:titleTextColor="@color/white"
+            app:layout_constraintTop_toTopOf="parent"
             app:title="@string/app_name"
-            app:titleCentered="true"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:titleCentered="true" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/photos_list"
@@ -43,11 +44,12 @@
         <ProgressBar
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:isVisible="@{loading}"
+            android:indeterminateTint="@color/primary_p700"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:isVisible="@{loading}"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:layout_width="match_parent"
@@ -55,6 +57,8 @@
             android:layout_marginHorizontal="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            />
+            android:text="@{error.errorMsg}"
+            android:gravity="center"
+            android:isVisible="@{error.showError}"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

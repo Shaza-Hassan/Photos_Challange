@@ -1,4 +1,4 @@
-package com.shaza.photoschallange.databinding
+package com.shaza.photoschallange.shared.databinding
 
 import android.view.View
 import android.widget.ImageView
@@ -12,7 +12,7 @@ import com.bumptech.glide.Glide
 
 @BindingAdapter("imageUrl")
 fun loadImage(view: ImageView, url: String?) {
-    if (url != null){
+    if (url != null) {
         Glide.with(view.context).load(url).into(view)
     }
 }

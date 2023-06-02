@@ -1,4 +1,4 @@
-package com.shaza.photoschallange.network
+package com.shaza.photoschallange.shared.network
 
 import android.os.Build
 import android.util.Log

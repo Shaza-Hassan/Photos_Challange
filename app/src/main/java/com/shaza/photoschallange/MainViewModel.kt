@@ -9,8 +9,7 @@ import org.koin.android.annotation.KoinViewModel
  */
 
 @KoinViewModel
-class MainViewModel(private val photoRepo: PhotoRepo) :ViewModel() {
-
+class MainViewModel(private val photoRepo: PhotoRepo) : ViewModel() {
 
 
 }

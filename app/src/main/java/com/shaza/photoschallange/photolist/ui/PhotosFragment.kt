@@ -1,21 +1,17 @@
 package com.shaza.photoschallange.photolist.ui
 
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
-import androidx.paging.insertSeparators
-import androidx.paging.map
 import com.google.android.material.snackbar.Snackbar
 import com.shaza.photoschallange.databinding.FragmentPhotosBinding
-import com.shaza.photoschallange.photolist.model.Photo
 import com.shaza.photoschallange.photolist.ui.adapter.PhotoAdapter
+import com.shaza.photoschallange.shared.model.ErrorModel
 import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -33,13 +29,12 @@ class PhotosFragment : Fragment() {
 
     private var loading: Boolean? = true
     private var error: Boolean? = false
-    private var dataLoaded: Boolean? = false
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentPhotosBinding.inflate(inflater,container,false)
+        binding = FragmentPhotosBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -51,7 +46,7 @@ class PhotosFragment : Fragment() {
         observeOnData()
     }
 
-    private fun observeOnData(){
+    private fun observeOnData() {
         lifecycleScope.launch {
             viewModel.getPhotosLiveData().collectLatest {
                 adapter.submitData(it)
@@ -59,11 +54,10 @@ class PhotosFragment : Fragment() {
         }
     }
 
-    private fun listenToPaginationState(){
+    private fun listenToPaginationState() {
         lifecycleScope.launch {
-            adapter.loadStateFlow.collectLatest{
-                loading = it.refresh is LoadState.Loading
-                error = it.refresh is LoadState.Error
+            adapter.loadStateFlow.collectLatest {
+                binding.loading = it.refresh is LoadState.Loading
 
                 val errorState = when {
                     it.prepend is LoadState.Error -> it.prepend as LoadState.Error
@@ -73,8 +67,17 @@ class PhotosFragment : Fragment() {
                 }
 
                 if (errorState?.error != null) {
-                    val throwable = errorState?.error
-                    Snackbar.make(requireView(),throwable?.message.toString(),Snackbar.LENGTH_LONG).show()
+                    val throwable = errorState.error
+                    if (adapter.itemCount == 0) {
+                        binding.error = ErrorModel(throwable.message.toString(), true)
+                    }
+                    else {
+                        Snackbar.make(
+                            requireView(),
+                            throwable.message.toString(),
+                            Snackbar.LENGTH_LONG
+                        ).show()
+                    }
                 }
             }
         }

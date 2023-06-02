@@ -13,7 +13,7 @@ import com.shaza.photoschallange.photolist.model.Photo
 /**
  * Created by Shaza Hassan on 31/May/2023.
  */
-class PhotoAdapter :  PagingDataAdapter<Photo, PhotoUserHolder>(Comparator) {
+class PhotoAdapter : PagingDataAdapter<Photo, PhotoUserHolder>(Comparator) {
     object Comparator : DiffUtil.ItemCallback<Photo>() {
         override fun areItemsTheSame(oldItem: Photo, newItem: Photo): Boolean {
             return oldItem.id == newItem.id
@@ -29,7 +29,7 @@ class PhotoAdapter :  PagingDataAdapter<Photo, PhotoUserHolder>(Comparator) {
 
     override fun onBindViewHolder(holder: PhotoUserHolder, position: Int) {
         val item = getItem(position)
-        val isAd = (position != 0 && (position+1) % 5 == 0)
+        val isAd = (position != 0 && (position + 1) % 5 == 0)
         item?.let { holder.bindView(it, isAd) }
     }
 
@@ -45,10 +45,12 @@ class PhotoAdapter :  PagingDataAdapter<Photo, PhotoUserHolder>(Comparator) {
     }
 }
 
-class PhotoUserHolder(private val binding: PhotoListItemBinding): RecyclerView.ViewHolder(binding.root){
+class PhotoUserHolder(private val binding: PhotoListItemBinding) :
+    RecyclerView.ViewHolder(binding.root) {
 
-    fun bindView(photo: Photo, isAd: Boolean){
-        photo.photoUrl ="https://farm${photo.farm}.static.flickr.com/${photo.server}/${photo.id}_${photo.secret}.jpg"
+    fun bindView(photo: Photo, isAd: Boolean) {
+        photo.photoUrl =
+            "https://farm${photo.farm}.static.flickr.com/${photo.server}/${photo.id}_${photo.secret}.jpg"
         photo.ad = isAd
         binding.photo = photo
         binding.executePendingBindings()
