@@ -2,11 +2,12 @@ package com.shaza.photoschallange
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.add
-import androidx.fragment.app.commit
+import com.microsoft.appcenter.AppCenter
+import com.microsoft.appcenter.analytics.Analytics
+import com.microsoft.appcenter.crashes.Crashes
 import com.shaza.photoschallange.databinding.ActivityMainBinding
 import com.shaza.photoschallange.photolist.ui.PhotosFragment
-import org.koin.androidx.viewmodel.ext.android.viewModel
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -14,6 +15,13 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
+        AppCenter.start(
+            application,
+            "2fd880fa-8028-4c5e-b2be-1f5abf9cf9d9",
+            Analytics::class.java,
+            Crashes::class.java
+        )
+
         setContentView(binding.root)
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()

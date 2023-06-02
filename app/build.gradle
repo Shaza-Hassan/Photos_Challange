@@ -104,4 +104,9 @@ dependencies {
 //    Image with zoom
     implementation 'com.github.chrisbanes:PhotoView:2.3.0'
 
+//    appcenter
+    def appCenterSdkVersion = '5.0.0'
+    implementation "com.microsoft.appcenter:appcenter-analytics:${appCenterSdkVersion}"
+    implementation "com.microsoft.appcenter:appcenter-crashes:${appCenterSdkVersion}"
+
 }
