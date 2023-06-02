@@ -5,7 +5,7 @@ import android.os.Bundle
 import androidx.fragment.app.add
 import androidx.fragment.app.commit
 import com.shaza.photoschallange.databinding.ActivityMainBinding
-import com.shaza.photoschallange.ui.PhotosFragment
+import com.shaza.photoschallange.photolist.ui.PhotosFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {

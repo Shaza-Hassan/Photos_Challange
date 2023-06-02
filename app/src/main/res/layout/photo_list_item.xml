@@ -5,8 +5,8 @@
     <data>
 
         <variable
-            name="imageUrl"
-            type="String" />
+            name="photo"
+            type="com.shaza.photoschallange.photolist.model.Photo" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -23,24 +23,34 @@
             app:cardUseCompatPadding="true">
 
             <ImageView
-                android:id="@+id/photo"
+                android:id="@+id/photo_image"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:adjustViewBounds="true"
                 android:scaleType="centerCrop"
-                imageUrl="@{imageUrl}"/>
+                imageUrl="@{photo.photoUrl}"/>
         </androidx.cardview.widget.CardView>
 
-        <com.google.android.gms.ads.AdView
-            xmlns:ads="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/adView"
-            ads:layout_constraintTop_toTopOf="parent"
+<!--        <com.google.android.gms.ads.AdView-->
+<!--            xmlns:ads="http://schemas.android.com/apk/res-auto"-->
+<!--            android:id="@+id/adView"-->
+<!--            ads:layout_constraintTop_toTopOf="parent"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_centerHorizontal="true"-->
+<!--            android:layout_alignParentBottom="true"-->
+<!--            ads:adSize="BANNER"-->
+<!--            ads:adUnitId="ca-app-pub-3940256099942544/6300978111">-->
+<!--        </com.google.android.gms.ads.AdView>-->
+
+        <ImageView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_alignParentBottom="true"
-            ads:adSize="BANNER"
-            ads:adUnitId="ca-app-pub-3940256099942544/6300978111">
-        </com.google.android.gms.ads.AdView>
+            app:layout_constraintTop_toBottomOf="@id/photo_card_view"
+            android:src="@drawable/banner_ads"
+            android:adjustViewBounds="true"
+            android:id="@+id/ad_view_image"
+            android:isVisible="@{photo.ad}"/>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -3,6 +3,19 @@
     <style name="Base.Theme.PhotosChallange" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/primary_p500</item>
+        <item name="colorPrimaryVariant">@color/primary_p700</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/secondary_s200</item>
+        <item name="colorSecondaryVariant">@color/secondary_s700</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">@color/white</item>
+        <!-- Customize your theme here. -->
+        <item name="android:windowLightStatusBar">true</item>
     </style>
 
     <style name="Theme.PhotosChallange" parent="Base.Theme.PhotosChallange" />

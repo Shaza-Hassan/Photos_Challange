@@ -1,6 +1,7 @@
 package com.shaza.photoschallange
 import android.app.Application
 import com.shaza.photoschallange.koin.AppModule
+import com.shaza.photoschallange.koin.module
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
@@ -17,7 +18,7 @@ class PhotosApp:  Application()  {
         startKoin {
             androidLogger()
             androidContext(this@PhotosApp)
-            modules(AppModule().module)
+            modules(AppModule().module,module)
         }
     }
 }
