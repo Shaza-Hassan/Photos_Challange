@@ -45,7 +45,7 @@ android {
         targetCompatibility 11
     }
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = '11'
     }
     // For KSP
     applicationVariants.all { variant ->
